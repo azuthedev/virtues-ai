@@ -73,7 +73,7 @@ export default function AboutUs() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20"></div>
                     <img
-                      src="/assets/liprof.jpeg"
+                      src="https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3-wh97mkoq--5173--96435430.local-credentialless.webcontainer-api.io/liprof1.jpeg"
                       alt="Profile"
                       className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-white shadow-2xl"
                     />
