@@ -60,7 +60,7 @@ export default function AboutUs() {
                     Meet Me
                   </h3>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                   I'm an AI specialist and automation expert based at Gelişim Koleji, dedicated to helping roofers and recruiters scale through intelligent systems.
+                   I'm an AI specialist and automation expert based at Gelişim Koleji, dedicated to businesses scale through intelligent systems.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
                     I build custom automations that transform key business processes. My systems include support automation, lead capture, phone caller systems, and custom websites for client-facing operations. For talent acquisition, I develop powerful resume screening automations.
