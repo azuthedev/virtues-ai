@@ -42,7 +42,7 @@ export default function AboutUs() {
             ABOUT US
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto tracking-wide leading-relaxed">
-            We are AI and automation specialists who apply our expertise to help roofers and recruiters scale through intelligent systems.
+            We are AI and automation specialists who apply our expertise to help businesses scale through intelligent systems.
           </p>
         </div>
 
