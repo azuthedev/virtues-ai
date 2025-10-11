@@ -1,7 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Shield, TrendingUp, Clock, CheckCircle, ArrowUp, Zap, Rocket, Crown, ChevronDown } from 'lucide-react';
 
-export default function CombinedSection({ onBookCall, faqs = [] }) {
+// FAQ Data
+const faqData = [
+  {
+    question: "How quickly can we get started?",
+    answer: "We can have your AI solution deployed within 7 days of our initial consultation. Our team works efficiently to understand your needs and implement the right automation systems for your business."
+  },
+  {
+    question: "What if I'm not satisfied with the results?",
+    answer: "We offer a 30-day money-back guarantee. If you don't see measurable results within the first month, we'll refund 100% of your investment. No questions asked."
+  },
+  {
+    question: "Do I need technical knowledge to use your AI solutions?",
+    answer: "Not at all! Our AI systems are designed to be user-friendly and intuitive. We handle all the technical setup and provide training to ensure your team can use the tools effectively."
+  },
+  {
+    question: "Which industries do you work with?",
+    answer: "We specialize in service-based businesses including roofing, recruiting, legal services, healthcare, real estate, and more. Our AI solutions are customizable to fit any industry that deals with leads and customer communication."
+  },
+  {
+    question: "What's included in the monthly pricing?",
+    answer: "All packages include the AI system setup, ongoing support, performance monitoring, weekly optimizations, and direct access to our team. You also own all the data and leads generated through our systems."
+  },
+  {
+    question: "Can I cancel at any time?",
+    answer: "Yes, there are no long-term contracts. You can cancel your subscription at any time. However, we're confident you'll see such great results that you'll want to continue growing with us."
+  },
+  {
+    question: "How do you measure success?",
+    answer: "We track key metrics including lead response time, conversion rates, time saved through automation, and overall ROI. You'll have access to a real-time dashboard showing all these metrics and more."
+  },
+  {
+    question: "Do you offer custom solutions?",
+    answer: "Absolutely! While we have standard packages, we can customize any solution to fit your specific business needs. Our Scale package is particularly flexible for businesses with unique requirements."
+  }
+];
+
+export default function CombinedSection({ onBookCall = () => {}, faqs = faqData }) {
   const [openFaq, setOpenFaq] = useState(null);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -33,6 +69,11 @@ export default function CombinedSection({ onBookCall, faqs = [] }) {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  const handleBookCall = (event, services) => {
+    console.log('Booking call with services:', services);
+    onBookCall(event, services);
+  };
+
   return (
     <>
       {/* CTA and Pricing Section */}
@@ -46,7 +87,7 @@ export default function CombinedSection({ onBookCall, faqs = [] }) {
               Every day you wait is another day your competitors are getting ahead. Our AI automation systems are ready to deploy immediately, giving you back hours of time while increasing revenue. Whether you're in roofing, recruiting, or any service business, we have proven solutions that start working from day one. Schedule your free strategy call today and discover how AI can transform your business operations.
             </p>
             <button
-              onClick={onBookCall}
+              onClick={handleBookCall}
               className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-lg transition-all duration-300 hover:scale-105 tracking-wide shadow-lg hover:shadow-blue-500/20"
             >
               <div className="flex items-center justify-center gap-3">
@@ -85,7 +126,7 @@ export default function CombinedSection({ onBookCall, faqs = [] }) {
                   </div>
                 </div>
                 <button
-                  onClick={() => onBookCall(undefined, ['Support Automation', 'Lead Capture Systems'])}
+                  onClick={(e) => handleBookCall(e, ['Support Automation', 'Lead Capture Systems'])}
                   className="w-full py-3 px-6 border-2 border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
                 >
                   Get Started
@@ -115,7 +156,7 @@ export default function CombinedSection({ onBookCall, faqs = [] }) {
                   </div>
                 </div>
                 <button
-                  onClick={() => onBookCall(undefined, ['Support Automation', 'Lead Capture Systems', 'Websites'])}
+                  onClick={(e) => handleBookCall(e, ['Support Automation', 'Lead Capture Systems', 'Websites'])}
                   className="w-full py-3 px-6 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition-all duration-300"
                 >
                   Get Started
@@ -150,7 +191,7 @@ export default function CombinedSection({ onBookCall, faqs = [] }) {
                   </div>
                 </div>
                 <button
-                  onClick={() => onBookCall(undefined, ['Support Automation', 'Lead Capture Systems', 'Websites', 'Phone Caller Systems', 'Hiring Systems', 'Additional Services'])}
+                  onClick={(e) => handleBookCall(e, ['Support Automation', 'Lead Capture Systems', 'Websites', 'Phone Caller Systems', 'Hiring Systems', 'Additional Services'])}
                   className="w-full py-3 px-6 border-2 border-blue-600 text-blue-600 font-bold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
                 >
                   Get Started
