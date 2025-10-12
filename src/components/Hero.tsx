@@ -25,8 +25,7 @@ export default function Hero({ onBookCall }: HeroProps) {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed tracking-wide">
-            We build custom automation solutions that capture more leads, provide 24/7 customer support, and eliminate manual work—giving you back time and increasing revenue.
-          </p>
+            Custom automation systems that handle your repetitive tasks while you focus on growing your business.
           <button
             onClick={() => onBookCall()}
             className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-lg transition-all duration-300 hover:scale-105 tracking-wide shadow-lg hover:shadow-blue-500/20"
