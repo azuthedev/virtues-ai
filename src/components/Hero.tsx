@@ -25,7 +25,7 @@ export default function Hero({ onBookCall }: HeroProps) {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed tracking-wide">
-            We provide custom automation solutions: helping roofers capture leads, handle customer support and automate calls, and giving recruiters automated resume screening to save hours daily.
+            We build custom automation solutions that capture more leads, provide 24/7 customer support, and eliminate manual work—giving you back time and increasing revenue.
           </p>
           <button
             onClick={() => onBookCall()}
