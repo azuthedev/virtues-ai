@@ -218,10 +218,10 @@ export default function ProblemSection({ onBookCall }: ProblemSectionProps) {
 
                 <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-center">
                   <p className="text-white text-lg mb-2">Total Monthly Loss</p>
-                  <p className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2 break-words">
                     ${totalLoss.toLocaleString()}
                   </p>
-                  <p className="text-blue-100 text-xl font-bold">
+                  <p className="text-blue-100 text-lg sm:text-xl font-bold break-words">
                     ${(totalLoss * 12).toLocaleString()} per year
                   </p>
                 </div>
