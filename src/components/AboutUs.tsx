@@ -60,10 +60,10 @@ export default function AboutUs() {
                     Meet Me
                   </h3>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                   Hi! My name is Erdem. I'm an AI specialist and automation expert based at İzmir Gelişim High School, dedicated to businesses scale through intelligent systems.
+                  Hi! My name is Erdem. I'm an AI specialist and automation expert based at İzmir Gelişim High School, dedicated to helping businesses scale through intelligent systems.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                    I build custom automations that transform key business processes. My systems include support automation, lead capture, phone caller systems, and custom websites for client-facing operations. For talent acquisition, I develop powerful resume screening automations.
+                    I build custom automations that transform key business processes. My systems include support automation, lead capture, phone caller systems, and custom websites for client-facing operations. I also provide other services like hiring systems that automate recruitment from screening to interviews, and ecommerce automation for Amazon FBA including product listing creation, listing optimization, and automated PPC campaigns.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide">
                     My goal is to leverage AI to replace manual effort, giving businesses back countless hours for strategic growth.
