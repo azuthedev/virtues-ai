@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, Phone } from 'lucide-react';
 
-export default function Hero({ onBookCall }) {
+function Hero({ onBookCall }) {
   const [heroVisible, setHeroVisible] = useState(false);
 
   useEffect(() => {
@@ -68,17 +68,4 @@ export default function Hero({ onBookCall }) {
   );
 }
 
-// Demo wrapper
-function Demo() {
-  const handleBookCall = (service) => {
-    alert(`Booking demo call for: ${service || 'AI Voice Agent Demo'}`);
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Hero onBookCall={handleBookCall} />
-    </div>
-  );
-}
-
-export default Demo;
+export default Hero;
