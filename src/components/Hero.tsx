@@ -43,7 +43,7 @@ function Hero({ onBookCall }) {
             >
               <div className="flex items-center justify-center gap-3">
                 <ArrowUp className="w-5 h-5" />
-                <span>Get Your Free Demo</span>
+                <span>Book Call</span>
               </div>
             </button>
 
