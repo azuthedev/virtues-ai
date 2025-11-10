@@ -35,17 +35,17 @@ function AboutUs() {
     {
       icon: Phone,
       title: 'Never Miss A Call',
-      description: 'Our AI answers every single call in 2 rings, 24/7/365. No more lost leads while you are on the roof or with customers.'
+      description: 'Our tool answers every single call in 2 rings, 24/7/365. No more lost leads while you are on the roof or with customers.'
     },
     {
       icon: Zap,
       title: 'Instant Lead Qualification',
-      description: 'AI qualifies every caller in real-time, filtering out tire kickers so you only spend time on serious roofing jobs.'
+      description: 'Our tool qualifies every caller in real-time, filtering out tire kickers so you only spend time on serious roofing jobs.'
     },
     {
       icon: Clock,
       title: 'Works Around The Clock',
-      description: 'Storm damage at 2 AM? Leak on Sunday? Your AI agent answers immediately and books the appointment.'
+      description: 'Storm damage at 2 AM? Leak on Sunday? Our tool agent answers immediately and books the appointment.'
     },
     {
       icon: Award,
