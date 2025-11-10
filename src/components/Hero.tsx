@@ -60,7 +60,7 @@ function Hero({ onBookCall }) {
           </div>
 
           <p className="text-sm text-gray-500">
-            See how AI can handle your calls in under 10 minutes
+            See how our tool can handle your calls in under 10 minutes
           </p>
         </div>
       </div>
