@@ -89,7 +89,7 @@ function AboutUs() {
                     Hi! My name is Erdem. I'm an AI automation specialist who helps roofing contractors capture every lead and grow their business through intelligent automation.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                    I've seen too many roofers lose jobs simply because they couldn't answer the phone. That's why I built AI inbound voice agents specifically for the roofing industry to make sure you never miss another call, never lose another lead, and never hand money to your competitors again.
+                    I've seen too many roofers lose jobs simply because they couldn't answer the phone. That's why I developed a solution specifically for the roofing industry to ensure you never miss a call or a job again.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide">
                     My goal is simple: help roofers answer every call, qualify every lead, and book more jobs automatically.
