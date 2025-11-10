@@ -1,31 +1,56 @@
-import React from 'react';
-import { Target, Users, Zap, Award } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import React, { useState, useEffect, useRef } from 'react';
+import { Phone, Clock, Zap, Award } from 'lucide-react';
 
-export default function AboutUs() {
-  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
+function AboutUs() {
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
+  const headerRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = { threshold: 0.1 };
+    
+    const headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setHeaderVisible(true);
+      });
+    }, observerOptions);
+
+    const contentObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setContentVisible(true);
+      });
+    }, observerOptions);
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (contentRef.current) contentObserver.observe(contentRef.current);
+
+    return () => {
+      headerObserver.disconnect();
+      contentObserver.disconnect();
+    };
+  }, []);
 
   const values = [
     {
-      icon: Target,
-      title: 'Mission-Driven',
-      description: 'We are committed to transforming businesses through intelligent automation that delivers real results.'
+      icon: Phone,
+      title: 'Never Miss A Call',
+      description: 'Our AI answers every single call in 2 rings, 24/7/365. No more lost leads while you are on the roof or with customers.'
     },
     {
       icon: Zap,
-      title: 'Fast Implementation',
-      description: 'Our solutions go live in days, not months. We focus on rapid deployment with immediate impact.'
+      title: 'Instant Lead Qualification',
+      description: 'AI qualifies every caller in real-time, filtering out tire kickers so you only spend time on serious roofing jobs.'
     },
     {
-      icon: Users,
-      title: 'Client-Focused',
-      description: 'Every solution is custom-built for your specific needs. Your success is our success.'
+      icon: Clock,
+      title: 'Works Around The Clock',
+      description: 'Storm damage at 2 AM? Leak on Sunday? Your AI agent answers immediately and books the appointment.'
     },
     {
       icon: Award,
-      title: 'Proven Results',
-      description: 'We deliver measurable outcomes: increased revenue, saved time, and improved customer satisfaction.'
+      title: 'Built For Roofers',
+      description: 'Specifically designed for roofing contractors. Understands your business, your customers, and your challenges.'
     }
   ];
 
@@ -35,38 +60,39 @@ export default function AboutUs() {
         <div
           ref={headerRef}
           className={`text-center mb-16 transition-all duration-800 ${
-            headerVisible ? 'animate-fade-in' : 'opacity-0 translate-y-8'
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black tracking-tight">
-            ABOUT US
+            BUILT FOR ROOFERS
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto tracking-wide leading-relaxed">
-            We are AI and automation specialists who apply our expertise to help businesses scale through intelligent systems.
+            AI voice technology designed specifically to solve the biggest problem in roofing: missed calls and lost jobs.
           </p>
         </div>
 
         <div
           ref={contentRef}
-          className={`transition-all duration-800 animation-delay-200 ${
-            contentVisible ? 'animate-slide-up' : 'opacity-0 translate-y-8'
+          className={`transition-all duration-800 ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
+          style={{ transitionDelay: '200ms' }}
         >
           <div className="mb-16 max-w-6xl mx-auto">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold text-black mb-6 tracking-wide">
-                    Meet Me
+                    Who I Am
                   </h3>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                  Hi! My name is Erdem. I'm an AI specialist and automation expert based at İzmir Gelişim High School, dedicated to helping businesses scale through intelligent systems.
+                    Hi! My name is Erdem. I'm an AI specialist who helps roofing contractors capture every lead and grow their business through intelligent automation.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                    I build custom automations that transform key business processes. My systems include support automation, lead capture, phone caller systems, and custom websites for client-facing operations. I also provide other services like hiring systems that automate recruitment from screening to interviews, and ecommerce automation for Amazon FBA including product listing creation, listing optimization, and automated PPC campaigns.
+                    I've seen too many roofers lose jobs simply because they couldn't answer the phone. That's why I built AI inbound voice agents specifically for the roofing industry to make sure you never miss another call, never lose another lead, and never hand money to your competitors again.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide">
-                    My goal is to leverage AI to replace manual effort, giving businesses back countless hours for strategic growth.
+                    My goal is simple: help roofers answer every call, qualify every lead, and book more jobs automatically.
                   </p>
                 </div>
                 <div className="flex justify-center">
@@ -74,7 +100,7 @@ export default function AboutUs() {
                     <div className="absolute inset-0 bg-blue-600 rounded-full blur-xl opacity-20"></div>
                     <img
                       src="https://i.imgur.com/2WKsK7z.jpeg"
-                      alt="Profile"
+                      alt="Erdem - AI Specialist"
                       className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-white shadow-2xl"
                     />
                   </div>
@@ -108,16 +134,16 @@ export default function AboutUs() {
           <div className="mt-16 text-center">
             <div className="bg-blue-600 text-white rounded-lg p-8 md:p-12">
               <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-wide">
-                Ready to Transform Your Business?
+                Ready to Answer Every Call?
               </h3>
               <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90 tracking-wide">
-                Let us show you how intelligent automation can drive real results for your business.
+                See how AI can capture every lead and book more roofing jobs starting today.
               </p>
               <a
                 href="#book-call"
                 className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg"
               >
-                Book a Call
+                Book Call
               </a>
             </div>
           </div>
@@ -126,3 +152,5 @@ export default function AboutUs() {
     </section>
   );
 }
+
+export default AboutUs;
