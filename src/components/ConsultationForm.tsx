@@ -1,66 +1,30 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Building, MessageSquare, Calendar, Settings, ArrowUp } from 'lucide-react';
-import Navigation from './Navigation';
-import { services } from './Services';
+import { User, Mail, Phone, Building, MessageSquare, Calendar, ArrowUp } from 'lucide-react';
 
-interface ConsultationFormProps {
-  onBack: () => void;
-  onHome: () => void;
-  selectedService?: string;
-}
-
-export default function ConsultationForm({ onBack, onHome, selectedService = '' }: ConsultationFormProps) {
+function ConsultationForm({ onBack, onHome, selectedService = '' }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    services: selectedService ? [selectedService] : [] as string[],
     message: '',
+    preferredDate: '',
     preferredTime: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const servicesDropdownRef = React.useRef<HTMLDivElement>(null);
 
-  // Update form data when selectedService changes
-  React.useEffect(() => {
-    if (selectedService) {
-      setFormData(prev => ({
-        ...prev,
-        services: [selectedService]
-      }));
-    }
-  }, [selectedService]);
-
-  // Close dropdown when clicking outside
-  React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target as Node)) {
-        setIsServicesOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Check if required fields are filled
     if (!formData.name.trim() || !formData.email.trim()) {
-      return; // Don't submit if required fields are empty
+      return;
     }
     
     setIsSubmitting(true);
     
     try {
-      // Send form data to Make.com webhook
       const webhookResponse = await fetch('https://n8n.n8nerdem.org/webhook/f07b4b07-cd69-4ae8-bab4-ee8741d0fed9', {
         method: 'POST',
         headers: {
@@ -71,8 +35,8 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
-          service: formData.services.join(' & '),
           message: formData.message,
+          preferredDate: formData.preferredDate,
           preferredTime: formData.preferredTime,
           timestamp: new Date().toISOString(),
           source: 'virtues-ai-consultation-form'
@@ -97,269 +61,197 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
         email: '',
         phone: '',
         company: '',
-        services: [],
         message: '',
+        preferredDate: '',
         preferredTime: ''
       });
     }, 3000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleServiceChange = (serviceName: string) => {
-    setFormData(prev => ({
-      ...prev,
-      services: prev.services.includes(serviceName)
-        ? prev.services.filter(s => s !== serviceName)
-        : [...prev.services, serviceName]
-    }));
-  };
-
-  // Check if form is valid for submission
   const isFormValid = formData.name.trim() !== '' && formData.email.trim() !== '';
 
-  const toggleServicesDropdown = () => {
-    setIsServicesOpen(!isServicesOpen);
-  };
-
   return (
-    <div className="min-h-screen bg-white text-black font-mono">
-      <Navigation 
-        onBookCall={onHome}
-        onCookiePolicy={() => {}}
-        onPrivacyPolicy={() => {}}
-        onTermsOfService={() => {}}
-        hideBookCall={true}
-        onHome={onHome}
-      />
-
-      {/* Main Content */}
-      <div className="py-20 px-6 pt-32">
-        <div className="max-w-4xl mx-auto">
-          {submitted ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-8">
-                <Calendar className="w-10 h-10 text-white" />
+    <div className="min-h-screen bg-white text-black font-mono pt-32 pb-20 px-6">
+      <div className="max-w-4xl mx-auto">
+        {submitted ? (
+          <div className="text-center py-20">
+            <div className="w-20 h-20 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-8">
+              <Calendar className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 tracking-tight">Thank You!</h1>
+            <p className="text-xl text-gray-600 mb-8 tracking-wide max-w-2xl mx-auto">
+              We have received your request and will contact you within 24 hours to schedule your strategy call.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto text-gray-600">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Calendar className="w-6 h-6 text-blue-600" />
+                </div>
+                <p className="tracking-wide">30 minute consultation</p>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 tracking-tight">Thank You!</h1>
-              <p className="text-xl text-gray-600 mb-8 tracking-wide max-w-2xl mx-auto">
-                We've received your request and will contact you within 24 hours to schedule your strategy call.
-              </p>
-              <div className="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto text-gray-600">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Calendar className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <p className="tracking-wide">30-minute consultation</p>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <MessageSquare className="w-6 h-6 text-blue-600" />
                 </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <MessageSquare className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <p className="tracking-wide">Custom AI roadmap</p>
+                <p className="tracking-wide">Custom roadmap</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <User className="w-6 h-6 text-blue-600" />
                 </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <User className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <p className="tracking-wide">No obligation</p>
-                </div>
+                <p className="tracking-wide">No obligation</p>
               </div>
             </div>
-          ) : (
-            <>
-              {/* Header */}
-              <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 text-black tracking-tight">
-                  Schedule Your
-                  <span className="block text-gray-600">
-                    Strategy Call
-                  </span>
-                </h1>
-                
-                {/* Urgency Banner */}
-                <div className="inline-block px-6 py-2 bg-red-100 border border-red-300 rounded-lg mb-4">
-                  <p className="text-red-600 font-semibold tracking-wide font-mono text-sm">
-                    ⚡ Limited spots available this month - 3 consultations available this week
-                  </p>
-                </div>
-                
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto tracking-wide">
-                  Tell us your biggest business challenge and we'll show you how AI can solve it. Free 30-minute consultation.
+          </div>
+        ) : (
+          <>
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-black tracking-tight">
+                Schedule Your
+                <span className="block text-gray-600">Strategy Call</span>
+              </h1>
+              
+              <div className="inline-block px-6 py-2 bg-red-100 border border-red-300 rounded-lg mb-4">
+                <p className="text-red-600 font-semibold tracking-wide font-mono text-sm">
+                  Limited spots available this month
                 </p>
               </div>
+              
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto tracking-wide">
+                Tell us your biggest challenge and we will show you how our system can solve it. Free 30 minute consultation.
+              </p>
+            </div>
 
-              {/* Form */}
-              <div className="max-w-3xl mx-auto">
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="relative">
-                      <User className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Full Name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
-                      />
-                    </div>
-
-                    <div className="relative">
-                      <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
-                      />
-                    </div>
-
-                    <div className="relative">
-                      <Phone className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone Number (Optional)"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
-                      />
-                    </div>
-
-                    <div className="relative">
-                      <Building className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <input
-                        type="text"
-                        name="company"
-                        placeholder="Company Name"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
-                      />
-                    </div>
-
-                    <div className="relative">
-                      <Settings className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <div className="relative" ref={servicesDropdownRef}>
-                        <button
-                          type="button"
-                          onClick={toggleServicesDropdown}
-                          className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black focus:border-blue-500 focus:outline-none transition-colors duration-200 text-left font-mono"
-                        >
-                          <span className="text-black tracking-wide">
-                            {formData.services.length === 0 
-                              ? 'Select services...' 
-                              : `${formData.services.length} service${formData.services.length > 1 ? 's' : ''} selected`
-                            }
-                          </span>
-                          <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                            <div className={`w-0 h-0 border-l-4 border-r-4 border-l-transparent border-r-transparent transition-transform duration-200 ${
-                              isServicesOpen ? 'border-b-4 border-b-gray-500 rotate-180' : 'border-t-4 border-t-gray-500'
-                            }`}></div>
-                          </div>
-                        </button>
-                        
-                        {isServicesOpen && (
-                          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg z-10 shadow-lg">
-                            <div className="p-4 space-y-3">
-                              {services.map((service, index) => (
-                                <label key={index} className="flex items-center gap-3 cursor-pointer group">
-                                  <input
-                                    type="checkbox"
-                                    checked={formData.services.includes(service.title)}
-                                    onChange={() => handleServiceChange(service.title)}
-                                    className="w-4 h-4 bg-white border border-gray-300 rounded-sm checked:bg-blue-600 checked:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 transition-colors duration-200"
-                                  />
-                                  <span className="text-black group-hover:text-gray-600 transition-colors duration-200 tracking-wide font-mono">
-                                    {service.title}
-                                  </span>
-                                </label>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="relative">
-                      <Calendar className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                      <select
-                        name="preferredTime"
-                        value={formData.preferredTime}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-8 py-4 bg-white border border-gray-300 rounded-lg text-black focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono appearance-none relative z-0"
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 12px center',
-                          backgroundSize: '16px'
-                        }}
-                      >
-                        <option value="" className="bg-white">Preferred Call Time</option>
-                        <option value="15.00 UTC" className="bg-white">15.00 UTC</option>
-                        <option value="16.00 UTC" className="bg-white">16.00 UTC</option>
-                        <option value="17.00 UTC" className="bg-white">17.00 UTC</option>
-                      </select>
-                    </div>
+            <div className="max-w-3xl mx-auto">
+              <div className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="relative">
+                    <User className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
+                    />
                   </div>
 
                   <div className="relative">
-                    <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
-                    <textarea
-                      name="message"
-                      placeholder="What's your biggest business challenge? (e.g., too many manual tasks, losing leads, customer service overwhelmed)"
-                      rows={6}
-                      value={formData.message}
+                    <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      required
+                      value={formData.email}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none tracking-wide font-mono"
-                    ></textarea>
+                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
+                    />
                   </div>
 
-                  <div className="text-center">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting || !isFormValid}
-                      className="relative px-12 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 tracking-wide font-mono shadow-lg hover:shadow-blue-500/20"
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number (Optional)"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <Building className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <input
+                      type="text"
+                      name="company"
+                      placeholder="Company Name"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <Calendar className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <input
+                      type="date"
+                      name="preferredDate"
+                      value={formData.preferredDate}
+                      onChange={handleChange}
+                      min={new Date().toISOString().split('T')[0]}
+                      className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <Calendar className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                    <select
+                      name="preferredTime"
+                      value={formData.preferredTime}
+                      onChange={handleChange}
+                      className="w-full pl-12 pr-8 py-4 bg-white border border-gray-300 rounded-lg text-black focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono appearance-none"
                     >
-                      {isSubmitting ? (
-                        <div className="relative z-10 flex items-center justify-center gap-3">
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span>Scheduling Your Call...</span>
-                        </div>
-                      ) : (
-                        <div className="relative z-10 flex items-center justify-center gap-3">
-                          <ArrowUp className="w-5 h-5" />
-                          <span>Schedule My Free Strategy Call</span>
-                        </div>
-                      )}
-                    </button>
-
-                    <p className="text-gray-600 mt-6 tracking-wide">
-                      We respect your privacy. Your information will never be shared.
-                    </p>
-                    
-                    <div className="mt-4 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
-                      <p className="text-yellow-700 text-sm tracking-wide font-mono">
-                        🔥 High demand: Only 3 spots left this week - book now
-                      </p>
-                    </div>
+                      <option value="">Preferred Call Time</option>
+                      <option value="15.00 UTC">15.00 UTC</option>
+                      <option value="16.00 UTC">16.00 UTC</option>
+                      <option value="17.00 UTC">17.00 UTC</option>
+                    </select>
                   </div>
-                </form>
+                </div>
+
+                <div className="relative">
+                  <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                  <textarea
+                    name="message"
+                    placeholder="What is your biggest challenge? (e.g., missing calls on the roof, losing leads to competitors)"
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none tracking-wide font-mono"
+                  ></textarea>
+                </div>
+
+                <div className="text-center">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isSubmitting || !isFormValid}
+                    className="relative px-12 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 tracking-wide font-mono shadow-lg hover:shadow-blue-500/20"
+                  >
+                    {isSubmitting ? (
+                      <div className="relative z-10 flex items-center justify-center gap-3">
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        <span>Scheduling Your Call...</span>
+                      </div>
+                    ) : (
+                      <div className="relative z-10 flex items-center justify-center gap-3">
+                        <ArrowUp className="w-5 h-5" />
+                        <span>Schedule My Free Strategy Call</span>
+                      </div>
+                    )}
+                  </button>
+
+                  <p className="text-gray-600 mt-6 tracking-wide">
+                    We respect your privacy. Your information will never be shared.
+                  </p>
+                </div>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
+export default ConsultationForm;
