@@ -88,7 +88,7 @@ function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy, onTermsOfServ
                   className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 tracking-wide shadow-lg hover:shadow-blue-500/20"
                 >
                   <ArrowUp className="w-4 h-4 inline mr-2" />
-                  Book Call
+                  Get Your Free Demo
                 </button>
               </>
             )}
