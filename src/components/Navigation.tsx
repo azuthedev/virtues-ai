@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowUp, Linkedin } from 'lucide-react';
+import { Menu, X, ArrowUp, Linkedin, Phone } from 'lucide-react';
 
-interface NavigationProps {
-  onBookCall: (service?: string) => void;
-  onCookiePolicy: () => void;
-  onPrivacyPolicy: () => void;
-  onTermsOfService: () => void;
-  hideBookCall?: boolean;
-  onHome?: () => void;
-}
-
-export default function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy, onTermsOfService, hideBookCall = false, onHome }: NavigationProps) {
+function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy, onTermsOfService, hideBookCall = false, onHome }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId) => {
     if (onHome) {
-      // If we're on a different page, go home first then scroll
       onHome();
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -24,7 +14,6 @@ export default function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy
         }
       }, 100);
     } else {
-      // If we're on the home page, scroll directly
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -91,13 +80,23 @@ export default function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy
               <Linkedin className="w-5 h-5" />
             </a>
             {!hideBookCall && (
-              <button
-                onClick={() => onBookCall()}
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 tracking-wide shadow-lg hover:shadow-blue-500/20"
-              >
-                <ArrowUp className="w-4 h-4 inline mr-2" />
-                Book Call
-              </button>
+              <>
+                <button
+                  disabled
+                  className="px-4 py-2 bg-gray-200 text-gray-400 font-semibold rounded-lg cursor-not-allowed tracking-wide relative group"
+                >
+                  <Phone className="w-4 h-4 inline mr-2" />
+                  Try for Free
+                  <span className="ml-2 text-xs bg-gray-300 text-gray-500 px-2 py-0.5 rounded">Coming Soon</span>
+                </button>
+                <button
+                  onClick={() => onBookCall()}
+                  className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 tracking-wide shadow-lg hover:shadow-blue-500/20"
+                >
+                  <ArrowUp className="w-4 h-4 inline mr-2" />
+                  Book Call
+                </button>
+              </>
             )}
           </div>
 
@@ -152,13 +151,23 @@ export default function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy
                 <span>LinkedIn</span>
               </a>
               {!hideBookCall && (
-                <button
-                  onClick={() => onBookCall()}
-                  className="text-left px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 tracking-wide w-fit shadow-lg hover:shadow-blue-500/20"
-                >
-                  <ArrowUp className="w-4 h-4 inline mr-2" />
-                  Book Call
-                </button>
+                <>
+                  <button
+                    disabled
+                    className="text-left px-4 py-2 bg-gray-200 text-gray-400 font-semibold rounded-lg cursor-not-allowed tracking-wide w-fit"
+                  >
+                    <Phone className="w-4 h-4 inline mr-2" />
+                    Try for Free
+                    <span className="ml-2 text-xs bg-gray-300 text-gray-500 px-2 py-0.5 rounded">Coming Soon</span>
+                  </button>
+                  <button
+                    onClick={() => onBookCall()}
+                    className="text-left px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 tracking-wide w-fit shadow-lg hover:shadow-blue-500/20"
+                  >
+                    <ArrowUp className="w-4 h-4 inline mr-2" />
+                    Book Call
+                  </button>
+                </>
               )}
             </div>
           </div>
@@ -167,3 +176,5 @@ export default function Navigation({ onBookCall, onCookiePolicy, onPrivacyPolicy
     </nav>
   );
 }
+
+export default Navigation;
