@@ -17,7 +17,7 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.name.trim() || !formData.email.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.company.trim() || !formData.message.trim()) {
       return;
     }
     
@@ -70,7 +70,11 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
     });
   };
 
-  const isFormValid = formData.name.trim() !== '' && formData.email.trim() !== '';
+  // Updated validation to include company and message fields
+  const isFormValid = formData.name.trim() !== '' && 
+                     formData.email.trim() !== '' && 
+                     formData.company.trim() !== '' && 
+                     formData.message.trim() !== '';
 
   return (
     <div className="min-h-screen bg-white text-black font-mono">
@@ -181,6 +185,7 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
                         type="text"
                         name="company"
                         placeholder="Company Name"
+                        required
                         value={formData.company}
                         onChange={handleChange}
                         className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 tracking-wide font-mono"
@@ -194,6 +199,7 @@ export default function ConsultationForm({ onBack, onHome, selectedService = '' 
                       name="message"
                       placeholder="What is your biggest challenge? (e.g., missing calls on the roof, losing leads to competitors)"
                       rows={6}
+                      required
                       value={formData.message}
                       onChange={handleChange}
                       className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:border-blue-500 focus:outline-none transition-colors duration-200 resize-none tracking-wide font-mono"
