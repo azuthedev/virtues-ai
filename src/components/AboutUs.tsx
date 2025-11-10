@@ -67,7 +67,7 @@ function AboutUs() {
             BUILT FOR ROOFERS
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto tracking-wide leading-relaxed">
-            AI voice technology designed specifically to solve the biggest problem in roofing: missed calls and lost jobs.
+            Our technology is specifically designed to solve the biggest problem in roofing: missed calls and lost jobs.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ function AboutUs() {
                     Who I Am
                   </h3>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
-                    Hi! My name is Erdem. I'm an AI specialist who helps roofing contractors capture every lead and grow their business through intelligent automation.
+                    Hi! My name is Erdem. I'm an AI automation specialist who helps roofing contractors capture every lead and grow their business through intelligent automation.
                   </p>
                   <p className="text-gray-700 text-lg leading-relaxed tracking-wide mb-6">
                     I've seen too many roofers lose jobs simply because they couldn't answer the phone. That's why I built AI inbound voice agents specifically for the roofing industry to make sure you never miss another call, never lose another lead, and never hand money to your competitors again.
