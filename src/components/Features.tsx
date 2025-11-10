@@ -5,7 +5,7 @@ const features = [
   {
     icon: Phone,
     title: 'Answers Every Call',
-    description: 'Never miss another lead. AI picks up in 2 rings, 24/7/365, even when you are on a roof.',
+    description: 'Never miss another lead. Picks up in 2 rings, 24/7/365, even when you are on a roof.',
     color: 'blue'
   },
   {
@@ -17,7 +17,7 @@ const features = [
   {
     icon: Clock,
     title: 'Books Appointments',
-    description: 'AI schedules inspections and quotes directly into your calendar while handling all customer questions.',
+    description: 'Schedules inspections and quotes directly into your calendar while handling all customer questions.',
     color: 'blue'
   },
   {
@@ -63,7 +63,7 @@ function Features() {
   // Check if mobile on mount and resize
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
     
     checkMobile();
@@ -95,7 +95,7 @@ function Features() {
             How It Works For Roofers
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            AI voice agents built specifically to capture more roofing leads and book more jobs
+            Built specifically to capture more roofing leads and book more jobs
           </p>
         </div>
 
