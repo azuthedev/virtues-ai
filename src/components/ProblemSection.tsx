@@ -40,27 +40,21 @@ function ProblemSection({ onBookCall }) {
   const problems = [
     {
       icon: PhoneOff,
-      title: "Missing Calls = Missing Money",
-      description: "You're on a roof, in a meeting, or with a customer. Your phone rings—and you miss it. That's a potential $8,000+ job going to your competitor.",
-      stat: "67% of customers won't call back if you miss their first call"
+      title: "You're Up on the Roof",
+      description: "Phone rings. You can't answer. That's an $8,000 job going to the guy who picked up.",
+      stat: "67% won't call back"
     },
     {
       icon: Clock,
-      title: "Slow Response Time Kills Deals",
-      description: "By the time you call back, they've already called 3 other roofers. The fastest responder wins the job—every single time.",
-      stat: "Leads contacted within 5 minutes are 100x more likely to convert"
-    },
-    {
-      icon: Phone,
-      title: "After-Hours Calls Go Nowhere",
-      description: "Storm damage happens at night. Leaks don't wait for business hours. But your phone does. Every evening and weekend call is money left on the table.",
-      stat: "35% of roofing calls happen outside business hours"
+      title: "They're Already Calling 3 Other Guys",
+      description: "By the time you call back, they've booked someone else. Fastest answer wins the job.",
+      stat: "5 min response = 100x more jobs"
     },
     {
       icon: DollarSign,
-      title: "Unqualified Leads Waste Your Time",
-      description: "You spend hours driving to quotes that go nowhere. DIYers, price shoppers, and tire-kickers eating up your valuable time.",
-      stat: "40% of your time wasted on unqualified leads"
+      title: "Storm Damage Calls at 9 PM",
+      description: "Leaks don't wait for business hours. But your phone does.",
+      stat: "35% of calls after hours"
     }
   ];
 
@@ -73,21 +67,21 @@ function ProblemSection({ onBookCall }) {
           }`}
         >
           <div className="inline-block px-6 py-2 bg-red-100 border-2 border-red-300 rounded-full mb-6">
-            <p className="text-red-600 font-bold tracking-wide">⚠️ EVERY MISSED CALL IS LOST MONEY</p>
+            <p className="text-red-600 font-bold tracking-wide">⚠️ MISSING CALLS = MISSING MONEY</p>
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold text-black mb-6 tracking-tight">
-            Stop Losing Roofing Jobs to
-            <span className="block text-blue-600">Missed Phone Calls</span>
+            You're On The Roof.
+            <span className="block text-blue-600">Your Phone's Ringing.</span>
           </h2>
           
           <p className="text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Your phone rings. You can't answer. That homeowner calls the next roofer. 
-            <span className="font-bold text-blue-600"> They book the job. You lose $8,000+.</span>
+            That homeowner moves on to the next roofer. 
+            <span className="font-bold text-blue-600"> They book. You lose $8,000+.</span>
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
             return (
@@ -106,18 +100,18 @@ function ProblemSection({ onBookCall }) {
                     <Icon className="w-7 h-7 text-red-700" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-red-900 mb-2 tracking-tight">
+                    <h3 className="text-xl font-bold text-red-900 mb-2 tracking-tight">
                       {problem.title}
                     </h3>
                   </div>
                 </div>
                 
-                <p className="text-gray-800 text-lg leading-relaxed mb-4">
+                <p className="text-gray-800 text-base leading-relaxed mb-4">
                   {problem.description}
                 </p>
                 
-                <div className="bg-red-100 border border-red-300 rounded-lg p-4">
-                  <p className="text-red-800 font-bold text-center">
+                <div className="bg-red-100 border border-red-300 rounded-lg p-3">
+                  <p className="text-red-800 font-bold text-center text-sm">
                     {problem.stat}
                   </p>
                 </div>
@@ -133,11 +127,11 @@ function ProblemSection({ onBookCall }) {
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Calculator className="w-10 h-10 text-white" />
                 <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                  Missed Call Calculator
+                  How Much Are You Losing?
                 </h3>
               </div>
               <p className="text-xl text-blue-100">
-                See how much money you're losing from missed phone calls
+                Calculate what missed calls are costing your roofing business
               </p>
             </div>
 
@@ -157,7 +151,7 @@ function ProblemSection({ onBookCall }) {
 
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Lead conversion rate (%)
+                    How many jobs do you close? (%)
                   </label>
                   <input
                     type="number"
@@ -169,7 +163,7 @@ function ProblemSection({ onBookCall }) {
 
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Average roofing job value ($)
+                    Average job value ($)
                   </label>
                   <input
                     type="number"
@@ -181,7 +175,7 @@ function ProblemSection({ onBookCall }) {
 
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Total calls received per day
+                    Total calls per day
                   </label>
                   <input
                     type="number"
@@ -194,7 +188,7 @@ function ProblemSection({ onBookCall }) {
 
               <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 md:p-8">
                 <h4 className="text-2xl font-bold text-center text-black mb-6">
-                  Your Monthly Loss From Missed Calls
+                  What You're Losing Every Month
                 </h4>
                 
                 <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -207,7 +201,7 @@ function ProblemSection({ onBookCall }) {
                   <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
                     <p className="text-sm text-gray-600 mb-1">Lost Jobs</p>
                     <p className="text-3xl font-bold text-blue-600">{convertedLeads}</p>
-                    <p className="text-xs text-gray-500 mt-1">At {conversionRate}% conversion</p>
+                    <p className="text-xs text-gray-500 mt-1">At {conversionRate}% close rate</p>
                   </div>
 
                   <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
@@ -233,10 +227,10 @@ function ProblemSection({ onBookCall }) {
 
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12 text-center shadow-2xl">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-            What If You Never Missed Another Call?
+            Never Miss Another Call
           </h3>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Our tool answers every call in 2 rings, qualifies leads instantly, and books appointments 24/7—even while you're on the roof.
+            We answer in 2 rings, qualify the lead, and book the estimate. 24/7. Even when you're up on the roof.
           </p>
 
           {onBookCall && (
@@ -249,16 +243,16 @@ function ProblemSection({ onBookCall }) {
           )}
           
           <p className="text-white/80 mt-6 text-sm">
-            See it in action in 10 minutes • No credit card required • No obligation
+            10 minute demo • No credit card • No BS
           </p>
         </div>
 
         <div className="mt-12 text-center">
           <p className="text-2xl font-bold text-gray-800 mb-4">
-            "Every missed call is a job for your competitor."
+            "Every missed call is money in your competitor's pocket."
           </p>
           <p className="text-lg text-gray-600">
-            Stop losing money. Start answering every call. Automatically.
+            Answer every call. Win more jobs. Automatically.
           </p>
         </div>
       </div>
