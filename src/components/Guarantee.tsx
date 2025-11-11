@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Shield, TrendingUp, Phone, CheckCircle, ChevronDown } from 'lucide-react';
+import { Shield, ChevronDown } from 'lucide-react';
 
 const faqData = [
   {
@@ -15,20 +15,8 @@ const faqData = [
     answer: "Not at all! The system works completely automatically. It answers calls, qualifies leads, and books appointments without any action needed from you. We provide a simple dashboard to review calls and appointments."
   },
   {
-    question: "What happens if the system can't answer a caller's question?",
-    answer: "The system is trained specifically on roofing services and can handle 95% of common questions. For complex situations, it smoothly transfers the call to you with full context of the conversation, so you never lose a lead."
-  },
-  {
-    question: "What's included in the monthly pricing?",
-    answer: "Everything! System setup, unlimited call handling, lead qualification, appointment booking, CRM integration, ongoing optimization, and direct support from our team. No hidden fees or surprise charges."
-  },
-  {
     question: "Can I cancel at any time?",
     answer: "Yes, there are no long term contracts. You can cancel your subscription at any time. However, most roofers see such great results capturing leads 24/7 that they stay with us for years."
-  },
-  {
-    question: "How do you measure success?",
-    answer: "We track every call answered, leads qualified, appointments booked, and response times. You get a real time dashboard showing exactly how many jobs you would have missed without the system."
   },
   {
     question: "Does this work for small roofing companies?",
@@ -85,7 +73,7 @@ function CombinedSection({ onBookCall, faqs = faqData }) {
               Our Guarantee
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We stand behind our system with a promise of real, measurable results for your roofing business
+              We stand behind our system with real results for your roofing business
             </p>
           </div>
 
@@ -99,55 +87,17 @@ function CombinedSection({ onBookCall, faqs = faqData }) {
             <div className="bg-white rounded-2xl border-2 border-blue-200 shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 md:p-12 text-center">
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Capture More Leads Within 30 Days or Your Money Back
+                  30 Days or Your Money Back
                 </h3>
                 <p className="text-xl text-blue-100">
-                  We are so confident our system will capture leads you are currently missing that we guarantee results within the first month.
+                  If you don't capture more leads in the first month, we'll refund 100% of your investment. No questions asked.
                 </p>
               </div>
 
               <div className="p-8 md:p-12">
-                <div className="grid md:grid-cols-3 gap-8 mb-12">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Phone className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-black mb-3">
-                      Never Miss A Call
-                    </h4>
-                    <p className="text-gray-600">
-                      Every single call answered in 2 rings, 24/7, even when you are on the roof
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <TrendingUp className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-black mb-3">
-                      More Jobs Booked
-                    </h4>
-                    <p className="text-gray-600">
-                      Automatic appointment booking means more estimates and closed deals
-                    </p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <h4 className="text-xl font-bold text-black mb-3">
-                      Zero Risk
-                    </h4>
-                    <p className="text-gray-600">
-                      If you do not see more leads captured, we will refund 100% of your investment
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-8 text-center">
+                <div className="text-center">
                   <p className="text-gray-600 text-lg italic">
-                    "We do not get paid unless you capture more leads. That is how confident we are in our system."
+                    "We don't get paid unless you capture more leads. That's how confident we are."
                   </p>
                 </div>
               </div>
