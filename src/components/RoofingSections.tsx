@@ -173,8 +173,8 @@ function RoofingSections({ onBookCall }) {
               <ArrowRight className="w-6 h-6" />
             </button>
             
-            {/* Try for Free button matching the image exactly */}
-            <div className="inline-flex items-center justify-between px-6 py-4 bg-gray-100 rounded-lg text-lg w-full sm:w-auto">
+            {/* Try for Free button - completely non-interactive */}
+            <div className="inline-flex items-center justify-between px-6 py-4 bg-gray-100 rounded-lg text-lg w-full sm:w-auto cursor-not-allowed opacity-75 pointer-events-none">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-gray-700" />
                 <span className="text-gray-700 font-medium">Try for Free</span>
