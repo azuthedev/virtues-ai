@@ -2,27 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Phone, PhoneOff, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
 
 function ProblemSection({ onBookCall }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const problems = [
     {
@@ -66,11 +47,7 @@ function ProblemSection({ onBookCall }) {
   return (
     <section ref={sectionRef} className="py-20 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div
-          className={`text-center mb-16 transition-all duration-800 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className="text-center mb-16">
           <div className="inline-block px-6 py-2 bg-red-100 border-2 border-red-300 rounded-full mb-6">
             <p className="text-red-600 font-bold tracking-wide">⚠️ MISSING CALLS = MISSING MONEY</p>
           </div>
@@ -92,13 +69,7 @@ function ProblemSection({ onBookCall }) {
             return (
               <div
                 key={index}
-                className={`bg-red-50 rounded-xl border-2 border-red-300 p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ 
-                  transitionDelay: `${index * 100}ms`,
-                  transition: 'all 0.5s ease-out'
-                }}
+                className="bg-red-50 rounded-xl border-2 border-red-300 p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-14 h-14 bg-red-200 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -129,7 +100,7 @@ function ProblemSection({ onBookCall }) {
         <div className="mb-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-5xl font-bold text-black mb-4 tracking-tight">
-              Let Our Tool Answer Customer Calls for You
+              Let Our Tool Answer Customer Calls <span className="text-blue-600">for You</span>
             </h3>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Stop losing jobs to missed calls. Our AI handles every call so you can focus on roofing.
@@ -169,14 +140,12 @@ function ProblemSection({ onBookCall }) {
             We answer in 2 rings, qualify the lead, and book the estimate. 24/7. Even when you're up on the roof.
           </p>
 
-          {onBookCall && (
-            <button
-              onClick={onBookCall}
-              className="px-10 py-5 bg-white text-blue-600 font-bold rounded-lg text-xl transition-colors duration-200 hover:bg-blue-50"
-            >
-              Get Your Free Demo
-            </button>
-          )}
+          <button
+            onClick={() => onBookCall && onBookCall()}
+            className="px-10 py-5 bg-white text-blue-600 font-bold rounded-lg text-xl transition-colors duration-200 hover:bg-blue-50"
+          >
+            Get Your Free Demo
+          </button>
           
           <p className="text-white/80 mt-6 text-sm">
             10 minute demo • No credit card • No BS
