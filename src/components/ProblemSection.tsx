@@ -132,15 +132,15 @@ function ProblemSection({ onBookCall }) {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12 text-center shadow-2xl">
+        <div className="text-center py-12">
           <button
             onClick={() => onBookCall && onBookCall()}
-            className="px-10 py-5 bg-white text-blue-600 font-bold rounded-lg text-xl transition-colors duration-200 hover:bg-blue-50"
+            className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200"
           >
             Get Your Free Demo
           </button>
           
-          <p className="text-white/80 mt-6 text-sm">
+          <p className="text-gray-600 mt-6 text-sm">
             10 minute demo • No credit card • No BS
           </p>
         </div>
