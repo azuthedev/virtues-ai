@@ -23,7 +23,7 @@ function Hero({ onBookCall }) {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed tracking-wide">
-            Missing calls on the roof? Every call answered in 2 rings. Every lead qualified. Every appointment booked. 24/7, while you stay on the roof.
+            Missing calls? Every ring is answered, every lead qualified, and every appointment booked, 24/7, even while you’re on the roof.
           </p>
 
           {/* Service Highlight */}
