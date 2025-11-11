@@ -3,8 +3,8 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ProblemSection from './components/ProblemSection';
 import AboutUs from './components/AboutUs';
+import RoofingSections from './components/RoofingSections';
 import Features from './components/Features';
-// REMOVED: import Services from './components/Services';
 import Guarantee from './components/Guarantee';
 import BookConsultation from './components/BookConsultation';
 import ConsultationForm from './components/ConsultationForm';
@@ -68,8 +68,8 @@ function App() {
       <Hero onBookCall={handleBookCall} />
       <ProblemSection onBookCall={handleBookCall} />
       <AboutUs />
+      <RoofingSections onBookCall={handleBookCall} />
       <Features />
-      {/* REMOVED: <Services onBookCall={handleBookCall} /> */}
       <Guarantee />
       <Footer onCookiePolicy={handleCookiePolicy} onPrivacyPolicy={handlePrivacyPolicy} onTermsOfService={handleTermsOfService} onBookCall={handleBookCall} />
     </div>
