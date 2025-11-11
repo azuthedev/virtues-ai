@@ -57,10 +57,10 @@ function Footer({ onCookiePolicy, onPrivacyPolicy, onTermsOfService, onBookCall 
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('features')}
+                  onClick={() => scrollToSection('about')}
                   className="text-gray-600 hover:text-black transition-colors duration-200 tracking-wide text-left"
                 >
-                  Why Choose Us
+                  How It Works
                 </button>
               </li>
               <li>
