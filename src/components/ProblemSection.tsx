@@ -103,7 +103,7 @@ function ProblemSection({ onBookCall }) {
               Let Our Tool Answer Customer Calls <span className="text-blue-600">for You</span>
             </h3>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Stop losing jobs to missed calls. Our technology handles every call so you can focus on roofing.
+              Stop losing jobs to missed calls. Our AI handles every call so you can focus on roofing.
             </p>
           </div>
 
@@ -133,13 +133,6 @@ function ProblemSection({ onBookCall }) {
         </div>
 
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12 text-center shadow-2xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-            Never Miss Another Call
-          </h3>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            We answer in 2 rings, qualify the lead, and book the estimate. 24/7. Even when you're up on the roof.
-          </p>
-
           <button
             onClick={() => onBookCall && onBookCall()}
             className="px-10 py-5 bg-white text-blue-600 font-bold rounded-lg text-xl transition-colors duration-200 hover:bg-blue-50"
