@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, PhoneOff, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
+import { Phone, PhoneOff, Clock, DollarSign, CheckCircle2, ArrowRight } from 'lucide-react';
 
 function ProblemSection({ onBookCall }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -135,9 +135,10 @@ function ProblemSection({ onBookCall }) {
         <div className="text-center py-12">
           <button
             onClick={() => onBookCall && onBookCall()}
-            className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200"
+            className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200 inline-flex items-center gap-2"
           >
             Get Your Free Demo
+            <ArrowRight className="w-6 h-6" />
           </button>
           
           <p className="text-gray-600 mt-6 text-sm">
