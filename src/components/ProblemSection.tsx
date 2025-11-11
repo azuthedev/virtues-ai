@@ -1,22 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, PhoneOff, Clock, DollarSign, Calculator } from 'lucide-react';
+import { Phone, PhoneOff, Clock, DollarSign, CheckCircle2 } from 'lucide-react';
 
 function ProblemSection({ onBookCall }) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  
-  // Calculator state
-  const [missedCalls, setMissedCalls] = useState(15);
-  const [conversionRate, setConversionRate] = useState(30);
-  const [avgJobValue, setAvgJobValue] = useState(8000);
-  const [callsPerDay, setCallsPerDay] = useState(10);
-
-  // Calculations
-  const missedLeadsPerMonth = missedCalls;
-  const convertedLeads = Math.round((missedLeadsPerMonth * conversionRate) / 100);
-  const lostRevenue = convertedLeads * avgJobValue;
-  const callsPerMonth = callsPerDay * 30;
-  const missedCallPercentage = Math.round((missedCalls / callsPerMonth) * 100);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,6 +42,24 @@ function ProblemSection({ onBookCall }) {
       title: "Storm Damage Calls at 9 PM",
       description: "Leaks don't wait for business hours. But your phone does.",
       stat: "35% of calls after hours"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: Phone,
+      title: "Every Call Answered Instantly",
+      description: "No more voicemails. No more missed opportunities. We pick up in 2 rings, every single time."
+    },
+    {
+      icon: Clock,
+      title: "Available 24/7",
+      description: "Storm hit at midnight? Leak on Sunday morning? We're answering calls when your competitors are sleeping."
+    },
+    {
+      icon: CheckCircle2,
+      title: "Book Jobs Without Staff",
+      description: "Our AI qualifies leads, answers questions, and books estimates automatically. You just show up and close."
     }
   ];
 
@@ -120,108 +125,39 @@ function ProblemSection({ onBookCall }) {
           })}
         </div>
 
-        {/* Interactive Calculator */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="bg-white rounded-2xl border-2 border-blue-200 shadow-2xl overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 md:p-8 text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <Calculator className="w-10 h-10 text-white" />
-                <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                  How Much Are You Losing?
-                </h3>
-              </div>
-              <p className="text-xl text-blue-100">
-                Calculate what missed calls are costing your roofing business
-              </p>
-            </div>
+        {/* Solution Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-5xl font-bold text-black mb-4 tracking-tight">
+              Let Our Tool Answer Customer Calls for You
+            </h3>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Stop losing jobs to missed calls. Our AI handles every call so you can focus on roofing.
+            </p>
+          </div>
 
-            <div className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Missed calls per month
-                  </label>
-                  <input
-                    type="number"
-                    value={missedCalls}
-                    onChange={(e) => setMissedCalls(Number(e.target.value))}
-                    className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg font-bold text-black"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    How many jobs do you close? (%)
-                  </label>
-                  <input
-                    type="number"
-                    value={conversionRate}
-                    onChange={(e) => setConversionRate(Number(e.target.value))}
-                    className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg font-bold text-black"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Average job value ($)
-                  </label>
-                  <input
-                    type="number"
-                    value={avgJobValue}
-                    onChange={(e) => setAvgJobValue(Number(e.target.value))}
-                    className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg font-bold text-black"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Total calls per day
-                  </label>
-                  <input
-                    type="number"
-                    value={callsPerDay}
-                    onChange={(e) => setCallsPerDay(Number(e.target.value))}
-                    className="w-full px-4 py-3 border-2 border-blue-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg font-bold text-black"
-                  />
-                </div>
-              </div>
-
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 md:p-8">
-                <h4 className="text-2xl font-bold text-center text-black mb-6">
-                  What You're Losing Every Month
-                </h4>
-                
-                <div className="grid md:grid-cols-3 gap-4 mb-6">
-                  <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
-                    <p className="text-sm text-gray-600 mb-1">Missed Calls</p>
-                    <p className="text-3xl font-bold text-blue-600">{missedCalls}</p>
-                    <p className="text-xs text-gray-500 mt-1">Per month</p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-blue-50 rounded-xl border-2 border-blue-300 p-8 text-center hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-16 h-16 bg-blue-200 rounded-lg flex items-center justify-center mx-auto mb-6">
+                    <Icon className="w-8 h-8 text-blue-700" />
                   </div>
-
-                  <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
-                    <p className="text-sm text-gray-600 mb-1">Lost Jobs</p>
-                    <p className="text-3xl font-bold text-blue-600">{convertedLeads}</p>
-                    <p className="text-xs text-gray-500 mt-1">At {conversionRate}% close rate</p>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 border-2 border-blue-200">
-                    <p className="text-sm text-gray-600 mb-1">Miss Rate</p>
-                    <p className="text-3xl font-bold text-blue-600">{missedCallPercentage}%</p>
-                    <p className="text-xs text-gray-500 mt-1">Of all calls</p>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-6 text-center">
-                  <p className="text-white text-lg mb-2">Lost Revenue Per Month</p>
-                  <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2 break-words">
-                    ${lostRevenue.toLocaleString()}
-                  </p>
-                  <p className="text-red-100 text-lg sm:text-xl font-bold break-words">
-                    ${(lostRevenue * 12).toLocaleString()} per year
+                  
+                  <h4 className="text-2xl font-bold text-blue-900 mb-4 tracking-tight">
+                    {benefit.title}
+                  </h4>
+                  
+                  <p className="text-gray-800 text-base leading-relaxed">
+                    {benefit.description}
                   </p>
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
 
