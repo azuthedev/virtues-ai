@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, ArrowRight, X, CheckCircle, AlertTriangle } from 'lucide-react';
+import { AlertCircle, ArrowRight, X, CheckCircle, AlertTriangle, Phone } from 'lucide-react';
 
 function RoofingSections({ onBookCall }) {
   const problems = [
@@ -112,9 +112,10 @@ function RoofingSections({ onBookCall }) {
 
               <button
                 onClick={onBookCall}
-                className="w-full py-4 bg-white text-blue-600 font-bold rounded-lg text-lg hover:bg-blue-50 transition-colors duration-200"
+                className="w-full py-4 bg-white text-blue-600 font-bold rounded-lg text-lg hover:bg-blue-50 transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 Get Your Free Demo
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -174,11 +175,13 @@ function RoofingSections({ onBookCall }) {
             
             <button
               disabled
-              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-blue-600 border-2 border-blue-600 font-bold rounded-lg text-xl cursor-not-allowed opacity-60"
+              className="inline-flex items-center justify-between px-6 py-4 bg-gray-100 text-gray-700 font-medium rounded-lg text-lg cursor-not-allowed opacity-80 w-full sm:w-auto"
             >
-              Try for Free
-              <ArrowRight className="w-6 h-6" />
-              <span className="ml-2 text-sm bg-blue-100 px-3 py-1 rounded-full">Coming Soon</span>
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5" />
+                <span>Try for Free</span>
+              </div>
+              <span className="bg-gray-300 text-gray-600 px-3 py-1 rounded text-sm font-medium">Coming Soon</span>
             </button>
           </div>
         </div>
