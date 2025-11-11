@@ -1,7 +1,7 @@
 import React from 'react';
 import { AlertCircle, ArrowRight, X, CheckCircle, AlertTriangle } from 'lucide-react';
 
-function NewSections({ onBookCall }) {
+function RoofingSections({ onBookCall }) {
   const problems = [
     "Customers calling while you're on the roof?",
     "Is your phone going to voicemail during jobs?",
@@ -15,7 +15,6 @@ function NewSections({ onBookCall }) {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4 text-black">
             Is This Right for Your Roofing Business?
-            <div className="w-32 h-1 bg-blue-600 mx-auto mt-4"></div>
           </h2>
 
           <div className="space-y-6 mt-16">
@@ -40,7 +39,7 @@ function NewSections({ onBookCall }) {
               onClick={onBookCall}
               className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200"
             >
-              Book a Demo
+              Get Your Free Demo
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
@@ -115,7 +114,7 @@ function NewSections({ onBookCall }) {
                 onClick={onBookCall}
                 className="w-full py-4 bg-white text-blue-600 font-bold rounded-lg text-lg hover:bg-blue-50 transition-colors duration-200"
               >
-                Book a Demo
+                Get Your Free Demo
               </button>
             </div>
           </div>
@@ -145,7 +144,7 @@ function NewSections({ onBookCall }) {
               onClick={onBookCall}
               className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200"
             >
-              Book a Free Demo
+              Get Your Free Demo
               <ArrowRight className="w-6 h-6" />
             </button>
           </div>
@@ -169,16 +168,17 @@ function NewSections({ onBookCall }) {
               onClick={onBookCall}
               className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xl transition-colors duration-200"
             >
-              Book a Free Demo
+              Get Your Free Demo
               <ArrowRight className="w-6 h-6" />
             </button>
             
             <button
-              onClick={onBookCall}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-white hover:bg-blue-50 text-blue-600 border-2 border-blue-600 font-bold rounded-lg text-xl transition-colors duration-200"
+              disabled
+              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-blue-600 border-2 border-blue-600 font-bold rounded-lg text-xl cursor-not-allowed opacity-60"
             >
-              Try It Free
+              Try for Free
               <ArrowRight className="w-6 h-6" />
+              <span className="ml-2 text-sm bg-blue-100 px-3 py-1 rounded-full">Coming Soon</span>
             </button>
           </div>
         </div>
@@ -187,4 +187,4 @@ function NewSections({ onBookCall }) {
   );
 }
 
-export default NewSections;
+export default RoofingSections;
