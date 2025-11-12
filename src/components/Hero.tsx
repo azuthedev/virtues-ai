@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-gray-900 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-gray-900">
             Stop Missing Calls.
             <br />
             <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Start Capturing Every Roofing Job.</span>
