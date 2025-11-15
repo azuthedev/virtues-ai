@@ -8,6 +8,8 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer"
+    X-Frame-Options = "SAMEORIGIN"
+    Content-Security-Policy = "frame-src 'self' https://www.loom.com;"
 
 [[headers]]
   for = "/assets/*"
